@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>@yield('title', '福大校友录')</title>
+    <title>@yield('title', '福大校友录') - 毕业设计项目</title>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
   </head>
   <body>
