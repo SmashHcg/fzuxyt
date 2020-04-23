@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>@yield('title', '福大校友录') - 随时随地看望母校</title>
+    <title>@yield('title', '福大校友录')</title>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
   </head>
   <body>
