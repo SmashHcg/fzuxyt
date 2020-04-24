@@ -26,7 +26,7 @@ class SessionsController extends Controller
         /*$account = $request->account;
         $password = $request->password;*/
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt($credentials, $request->has('remember'))) {
         // 该用户存在于数据库，且账号和密码相符合
             session()->flash('success', '欢迎回来！');
             return redirect()->route('users.show', [Auth::user()]);
