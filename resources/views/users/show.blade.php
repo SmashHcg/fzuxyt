@@ -13,5 +13,5 @@
     </div>
   </div>
 </div>
-{{$user->nickName}}-{{$user->email}}
+{{$user->account}}-{{$user->nickName}}-{{$user->email}}
 @stop

@@ -8,6 +8,19 @@ use Auth;
 
 class UsersController extends Controller
 {
+    //构造器方法指定登录检测过滤方法
+    public function __construct()
+    {
+        //这三个页面不会检测登录状态
+        $this->middleware('auth', [
+            'except' => ['show', 'create', 'store']
+        ]);
+        //已登录用户不允许访问登录页面
+        $this->middleware('guest', [
+            'only' => ['create']
+        ]);
+    }
+
     //创建用户
     public function create()
     {
@@ -20,7 +33,7 @@ class UsersController extends Controller
         return view('users.show', compact('user'));
     }
 
-    //接受接受一个Illuminate\Http\Request实例参数来获得用户的所有输入数据
+    //注册用户,接受接受一个Illuminate\Http\Request实例参数来获得用户的所有输入数据
     public function store(Request $request)
     {
          $this->validate($request, [
@@ -50,12 +63,14 @@ class UsersController extends Controller
     //编辑个人信息
     public function edit(User $user)
     {
+        $this->authorize('update', $user);
         return view('users.edit', compact('user'));
     }
 
     //更新个人信息
     public function update(User $user, Request $request)
     {
+        $this->authorize('update', $user);
         $this->validate($request, [
             'nickName' => 'required|max:10',
             'password' => 'nullable|confirmed|min:6'
