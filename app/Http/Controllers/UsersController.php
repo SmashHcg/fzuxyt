@@ -11,9 +11,9 @@ class UsersController extends Controller
     //构造器方法指定登录检测过滤方法
     public function __construct()
     {
-        //这三个页面不会检测登录状态
+        //未登录状态可以访问这些页面
         $this->middleware('auth', [
-            'except' => ['show', 'create', 'store']
+            'except' => ['show', 'create', 'store','index']
         ]);
         //已登录用户不允许访问登录页面
         $this->middleware('guest', [
@@ -27,10 +27,17 @@ class UsersController extends Controller
         return view('users.create');
     }
 
-    //展示用户
+    //查看某一用户
     public function show(User $user)
     {
         return view('users.show', compact('user'));
+    }
+
+    //查看所有用户
+    public function index()
+    {
+        $users = User::paginate(10);
+        return view('users.index', compact('users'));
     }
 
     //注册用户,接受接受一个Illuminate\Http\Request实例参数来获得用户的所有输入数据

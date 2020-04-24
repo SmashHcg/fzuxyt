@@ -3,7 +3,7 @@
     <a class="navbar-brand" href="{{route('home')}}">福大校友录</a>
     <ul class="navbar-nav justify-content-end">
       @if (Auth::check())
-        <li class="nav-item"><a class="nav-link" href="#">用户列表</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ route('users.index') }}">用户列表</a></li>
         <!--姓名下拉框导航-->
         <li class="nav-item dropdown">
           <!--姓名按钮-->
